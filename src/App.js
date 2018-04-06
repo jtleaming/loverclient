@@ -20,11 +20,11 @@ class App extends Component {
     };
     this.selectRandomGif = this.selectRandomGif.bind(this);
   }
-  sendGif = () =>{
-    axios.post('', {
+  sendGif = (number) =>{
+    axios.post('http://localhost:5050/api/'+number+'/'+this.state.gifUri, {
             name: this.state.name,
             message: this.state.message
-        }, { headers: { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": " Origin, X-Requested-With, Content-Type, Accept" } })
+        }, { headers: { "Access-Control-Allow-Origin": "http://localhost:3000", "Access-Control-Allow-Headers": " Origin, X-Requested-With, Content-Type, Accept" } })
         .then(function (response) {
             console.log(response);
         })
@@ -33,10 +33,10 @@ class App extends Component {
         });
   };
   selectRandomGif = () => {
-    axios.get('', { headers: { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": " Origin, X-Requested-With, Content-Type, Accept" } })
+    axios.get('http://localhost:5000/api/sendgif', { headers: { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": " X-Requested-With,content-type",'Access-Control-Allow-Credentials': true, 'Access-Control-Allow-Methods': 'GET' } })
       .then((response) => {
         this.setState( prevState =>({
-          gifUri: 'https://giphy.com/embed/l0OWhnv3eJ3B1tN1S',
+          gifUri: response.data,
           displayGif: !prevState.displayGif
         }));
       })
@@ -50,7 +50,7 @@ class App extends Component {
       <div className="">
           <h1 className="">Welcome! Send a gif!</h1>
           <Button className="btn"><i className="heart fa fa-heart fa-4x fa-beat"></i>Send some love...</Button>
-          <Button className="btn" onClick={this.sendGif}><i className="heart fa fa-heart fa-4x fa-beat"></i>Send some love...</Button>
+          <Button className="btn" onClick={() => this.sendGif('+1804034602')}><i className="heart fa fa-heart fa-4x fa-beat"></i>Send some love...</Button>
 
         <div className=""><Button className="btn1" onClick={this.selectRandomGif}>Select Random Gif</Button></div>
         {displayGif ?
