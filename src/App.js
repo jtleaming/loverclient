@@ -3,9 +3,22 @@ import {Button} from 'reactstrap'
 import axios from 'axios';
 import './App.css';
 
+const GifContainer = (props) => {
+    return(
+      <div className="" >
+        <iframe title="randomGif" name="gif" src={props.gifUri}/>
+      </div>
+    )
+};
+
 class App extends Component {
-  state = {
-      gifUri: ''
+  constructor(props){
+    super(props);
+    this.state = {
+        gifUri: '',
+        displayGif: false
+    };
+    this.selectRandomGif = this.selectRandomGif.bind(this);
   }
   sendGif = () =>{
     axios.post('', {
@@ -18,17 +31,21 @@ class App extends Component {
         .catch(function (error) {
             alert(error);
         });
-  }
+  };
   selectRandomGif = () => {
     axios.get('', { headers: { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": " Origin, X-Requested-With, Content-Type, Accept" } })
-      .then(function (response) {
-        this.state.gifUri = response;
+      .then((response) => {
+        this.setState( prevState =>({
+          gifUri: 'https://giphy.com/embed/l0OWhnv3eJ3B1tN1S',
+          displayGif: !prevState.displayGif
+        }));
       })
       .catch(function (error) {
         alert(error);
       });
-  }
+  };
   render() {
+    const {displayGif} = this.state;
     return (
       <div className="">
           <h1 className="">Welcome! Send a gif!</h1>
@@ -36,6 +53,10 @@ class App extends Component {
           <Button className="btn" onClick={this.sendGif}><i className="heart fa fa-heart fa-4x fa-beat"></i>Send some love...</Button>
 
         <div className=""><Button className="btn1" onClick={this.selectRandomGif}>Select Random Gif</Button></div>
+        {displayGif ?
+          <GifContainer gifUri={this.state.gifUri} />:
+          null
+        }
       </div>
     );
   }
