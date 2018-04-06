@@ -12,7 +12,7 @@ body {
     transform:scale(1);
   }
   5% {
-    transform:scale(1.25);
+    transform:scale(1.50);
   }
   20% {
     transform:scale(1);
@@ -21,13 +21,13 @@ body {
     transform:scale(1);
   }
   35% {
-    transform:scale(1.25);
+    transform:scale(1.50);
   }
   50% {
     transform:scale(1);
   }
   55% {
-    transform:scale(1.25);
+    transform:scale(1.50);
   }
   70% {
     transform:scale(1);
@@ -41,8 +41,10 @@ body {
 }
 
 
+
 .heart {
   color:red;
+  margin: 17%;
 }
 
 .btn{
@@ -61,4 +63,9 @@ body {
   font-size: 130%;
   font-family:"Lucida Console", Monaco, monospace; 
   font-weight: 900;
+}
+
+Button{
+  font-size: 20px;
+  font-weight: 700
 }
