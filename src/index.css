@@ -40,8 +40,6 @@ body {
   font:1em sans-serif;
 }
 
-
-
 .heart {
   color:red;
   margin: 17%;
@@ -50,7 +48,7 @@ body {
 .btn{
   height: 200px;
   width: 200px;
-  margin: 6%;
+  margin: 2%;
   border-radius: 15%;
 }
 
@@ -59,9 +57,10 @@ body {
   width: 250px;
   margin: .5%;
   border-radius: 8%;
+  border-color: cadetblue;
   background-color: cadetblue;
   font-size: 130%;
-  font-family:"Lucida Console", Monaco, monospace; 
+  font-family:"Lucida Console", Monaco, monospace;
   font-weight: 900;
 }
 
