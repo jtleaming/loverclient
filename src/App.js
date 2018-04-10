@@ -12,7 +12,7 @@ class SendGifButton extends Component{
     };
     sendGif = function (number) {
         this.setState({loading:true});
-        axios.post('http://localhost:5002/api/sendmessage/' + number + '/' + this.props.gifUri, { headers: { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": " Origin, X-Requested-With, Content-Type, Accept" } })
+        axios.get('http://localhost:5002/api/sendmessage/' + number + '/' + this.props.gifUri, { headers: { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": " Origin, X-Requested-With, Content-Type, Accept", 'Access-Control-Allow-Credentials': true, 'Access-Control-Allow-Methods': 'GET' } })
           .then((response) =>  {
             console.log(response);
             this.setState(() => ({ loading: false}));
@@ -24,9 +24,9 @@ class SendGifButton extends Component{
       };
     render(){
         return(
-        <div>
-                <Button className="btn" onClick={() => this.sendGif(this.props.phoneNumbers)  }><i className={this.state.loading ? "heart fa fa-heart fa-4x fa-beat" : "heart fa fa-heart fa-4x"}></i>{this.props.messages}</Button>
-        </div>
+        <row>
+                <Button className="btn" onClick={() => this.sendGif(this.props.phoneNumbers)}><i className={this.state.loading ? "heart fa fa-heart fa-4x fa-beat" : "heart fa fa-heart fa-4x"}></i>{this.props.messages}</Button>
+        </row>
         );
     }
 }
@@ -44,7 +44,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      gifUri: '',
+      gifUri: '123',
       displayGif: false,
       loading: false,
       phoneNumbers: ['18014140392', '18014034602'],
@@ -67,15 +67,14 @@ class App extends Component {
   render() {
     const { displayGif } = this.state;
     return (
-      <div className="">
-        <h1 className="">Welcome! Send a gif!</h1>
+      <div>
+        <h1>Welcome! Send a gif!</h1>
         {this.state.phoneNumbers.map((phoneNumber, i)=>
             <SendGifButton key={i} phoneNumbers={phoneNumber} gifUri={this.state.gifUri} messages={this.state.messages[i]}/>
         )}
-        <div className=""><Button className="btn1" onClick={this.selectRandomGif}>Select Random Gif</Button></div>
-        {displayGif ?
-          <GifContainer gifUri={this.state.gifUri} /> :
-          null
+        <div><Button className="btn1" onClick={this.selectRandomGif}>Select Random Gif</Button></div>
+        {displayGif &&
+          <GifContainer gifUri={this.state.gifUri} />
         }
       </div>
     );

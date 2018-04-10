@@ -4,6 +4,7 @@ body {
   font-family: sans-serif;
 }
 
+
 .fa-beat {
   animation:fa-beat 5s ease infinite;
 }
@@ -35,28 +36,31 @@ body {
 }
 body {
   text-align:center;
-  background:#111;
-  color:#aaa;
+  background: whitesmoke;
+  color:#000;
   font:1em sans-serif;
 }
 
 .heart {
   color:red;
   margin: 17%;
+  font-size: 25px
 }
 
 .btn{
   height: 200px;
   width: 200px;
-  margin: 2%;
+  margin: 6%;
   border-radius: 15%;
+  background-color: rgba(167, 57, 167, 0.815);
+  border: none
 }
 
 .btn1{
   height: 80px;
   width: 250px;
   margin: .5%;
-  border-radius: 8%;
+  border-radius: 15%;
   border-color: cadetblue;
   background-color: cadetblue;
   font-size: 130%;
@@ -66,5 +70,6 @@ body {
 
 Button{
   font-size: 20px;
-  font-weight: 700
+  font-weight: 700;
+  color: rgba(24, 14, 14, 0.911)
 }
